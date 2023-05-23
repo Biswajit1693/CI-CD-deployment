@@ -4,7 +4,7 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        git 'https://github.com/your-username/your-repository.git'
+        git 'https://github.com/Biswajit1693/CI-CD-deployment'
       }
     }
 
@@ -24,8 +24,8 @@ pipeline {
     stage('Docker Build') {
       steps {
         script {
-          def dockerImage = docker.build('your-image-name')
-          docker.withRegistry('https://your-docker-registry', 'docker-credentials-id') {
+          def dockerImage = docker.build('pythonapp:latest')
+          docker.withRegistry('https://hub.docker.com/', 'docker-hub') {
             dockerImage.push()
           }
         }
@@ -35,8 +35,8 @@ pipeline {
     stage('Minikube Deploy') {
       steps {
         kubernetesDeploy(
-          configs: 'your-deployment-file.yaml',
-          kubeconfigId: 'minikube-kubeconfig',
+          configs: 'deployment.yaml',
+          kubeconfigId: 'minikube-cluster',
           kubeconfigFile: ''
         )
       }
