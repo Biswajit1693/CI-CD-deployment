@@ -26,6 +26,19 @@ pipeline {
             }
         }
         
+        stage("Deploy") {
+            steps {
+                withCredentials([file(credentialsId: 'kubemini', variable: 'KUBECONFIG')]) {
+                sh 'export KUBECONFIG=$KUBECONFIG'
+                
+                //deployment
+                
+                sh 'kubectl apply -f deployment.yaml'
+                
+                }
+            }
+        }
+        
     }
 
 }
