@@ -21,8 +21,8 @@ pipeline {
                 }
                 
                 // push the image to dockerhub
-                sh 'sudo docker tag helloapp:latest jeetlinux/demo-docker:v2'
-                sh 'sudo docker push jeetlinux/demo-docker:v2'
+                sh 'sudo docker tag helloapp:latest jeetlinux/demo-docker:v10'
+                sh 'sudo docker push jeetlinux/demo-docker:v10'
                 
             }
         }
@@ -34,7 +34,7 @@ pipeline {
                 
                 //deployment
                 
-                sh 'kubectl apply -f deployment.yaml'
+                sh 'kubectl apply -f deployment.yaml --force'
                 
                 }
             }
