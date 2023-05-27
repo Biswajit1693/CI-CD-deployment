@@ -8,7 +8,7 @@ pipeline {
                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'GitHub', url: 'https://github.com/Biswajit1693/CI-CD-deployment']])
                 // Build docker image
                 sh 'sudo docker build -t helloapp:latest .'
-                sh 'sudo docker run --name helloname -d -p 5000:5000 helloapp:latest'
+                sh 'sudo docker run -d -p 5000:5000 helloapp:latest'
             }
         }
         
