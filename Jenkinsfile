@@ -7,7 +7,8 @@ pipeline {
                 // Source repo url
                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'GitHub', url: 'https://github.com/Biswajit1693/CI-CD-deployment']])
                 // Build docker image
-                sh 'sudo docker build -t hello:latest .'
+                sh 'sudo docker build -t helloapp:latest .'
+                sh 'sudo docker run --name helloname -d -p 5000:5000 helloapp:latest'
             }
         }
         
@@ -20,7 +21,7 @@ pipeline {
                 }
                 
                 // push the image to dockerhub
-                sh 'sudo docker tag hello:latest jeetlinux/demo-docker:v2'
+                sh 'sudo docker tag helloapp:latest jeetlinux/demo-docker:v2'
                 sh 'sudo docker push jeetlinux/demo-docker:v2'
                 
             }
