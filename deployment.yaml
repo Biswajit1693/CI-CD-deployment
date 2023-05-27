@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: hello-app
-          image: jeetlinux/demo-docker:v2
+          image: jeetlinux/demo-docker:v10
 
           ports:
             - containerPort: 5000
